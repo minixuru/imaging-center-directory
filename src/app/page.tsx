@@ -1,9 +1,9 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { Map as MapIcon } from "lucide-react";
 import { CenterCard } from "@/components/CenterCard";
 import { CenterDetail } from "@/components/CenterDetail";
+import { MapView } from "@/components/MapView";
 import { SearchBar } from "@/components/SearchBar";
 import { CENTERS, geocode } from "@/lib/data";
 import { DEFAULT_WEIGHTS, rankCenters } from "@/lib/ranking";
@@ -87,13 +87,12 @@ export default function Home() {
                 onClose={() => setSelectedId(null)}
               />
             ) : (
-              <div className="flex h-full flex-col items-center justify-center gap-2 p-6 text-center text-slate-500">
-                <MapIcon className="h-8 w-8 text-slate-300" />
-                <p className="text-sm">
-                  Select a center to see details, score breakdown, and contact
-                  info.
-                </p>
-              </div>
+              <MapView
+                centers={ranked}
+                origin={origin}
+                selectedId={selectedId}
+                onSelect={setSelectedId}
+              />
             )}
           </div>
         </aside>
