@@ -20,20 +20,48 @@ type Props = {
   onSelect: (id: string) => void;
 };
 
-function buildIcon(rank: number, isSelected: boolean): DivIcon {
-  const color = isSelected ? "#0f172a" : rank <= 3 ? "#10b981" : "#64748b";
+function buildIcon(rank: number, score: number, isSelected: boolean): DivIcon {
+  const palette = isSelected
+    ? { bg: "#4f46e5", fg: "white", border: "white" } // indigo
+    : rank <= 3
+      ? { bg: "#059669", fg: "white", border: "white" } // emerald
+      : rank <= 6
+        ? { bg: "white", fg: "#0f172a", border: "white" }
+        : { bg: "#f1f5f9", fg: "#475569", border: "white" };
+
+  const w = isSelected ? 44 : 36;
+  const h = isSelected ? 32 : 26;
+  const totalH = h + 8 + (isSelected ? 2 : 0);
+
   return L.divIcon({
     className: "",
-    iconSize: [28, 28],
-    iconAnchor: [14, 14],
+    iconSize: [w + 4, totalH],
+    iconAnchor: [(w + 4) / 2, totalH],
     html: `
-      <div style="
-        width:28px;height:28px;border-radius:9999px;
-        background:${color};color:white;display:flex;
-        align-items:center;justify-content:center;
-        font:600 12px/1 system-ui,sans-serif;
-        box-shadow:0 1px 2px rgba(0,0,0,.15),0 0 0 2px white;
-      ">${rank}</div>
+      <div style="position:relative;width:${w + 4}px;height:${totalH}px;">
+        <div style="
+          position:absolute;left:2px;top:0;
+          width:${w}px;height:${h}px;
+          display:flex;align-items:center;justify-content:center;
+          background:${palette.bg};color:${palette.fg};
+          border:2px solid ${palette.border};border-radius:${h / 2}px;
+          font:700 ${isSelected ? 13 : 12}px/1 system-ui,-apple-system,sans-serif;
+          box-shadow:0 4px 10px rgba(15,23,42,.18),0 1px 2px rgba(15,23,42,.08);
+          letter-spacing:.01em;
+          ${isSelected ? "transform:scale(1.02);" : ""}
+        ">
+          <span style="font-size:9px;opacity:.7;margin-right:3px;font-weight:600;">#${rank}</span>
+          <span>${score}</span>
+        </div>
+        <div style="
+          position:absolute;left:50%;bottom:0;
+          width:0;height:0;margin-left:-5px;
+          border-left:5px solid transparent;
+          border-right:5px solid transparent;
+          border-top:8px solid ${palette.bg};
+          filter:drop-shadow(0 1px 1px rgba(15,23,42,.18));
+        "></div>
+      </div>
     `,
   });
 }
@@ -125,7 +153,7 @@ export default function MapInner({
           <Marker
             key={s.center.id}
             position={[s.center.coords.lat, s.center.coords.lng]}
-            icon={buildIcon(i + 1, selectedId === s.center.id)}
+            icon={buildIcon(i + 1, s.score, selectedId === s.center.id)}
             eventHandlers={{ click: () => onSelect(s.center.id) }}
           >
             <Popup>
