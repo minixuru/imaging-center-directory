@@ -5,9 +5,10 @@ import { CenterCard } from "@/components/CenterCard";
 import { CenterDetail } from "@/components/CenterDetail";
 import { MapView } from "@/components/MapView";
 import { SearchBar } from "@/components/SearchBar";
+import { WeightTuner } from "@/components/WeightTuner";
 import { CENTERS, geocode } from "@/lib/data";
 import { DEFAULT_WEIGHTS, rankCenters } from "@/lib/ranking";
-import type { SearchInput } from "@/lib/types";
+import type { RankingWeights, SearchInput } from "@/lib/types";
 
 export default function Home() {
   const [search, setSearch] = useState<SearchInput>({
@@ -15,6 +16,7 @@ export default function Home() {
     modality: "MRI",
     insurance: "",
   });
+  const [weights, setWeights] = useState<RankingWeights>(DEFAULT_WEIGHTS);
   const [selectedId, setSelectedId] = useState<string | null>(null);
 
   const { coords: origin, matched } = useMemo(
@@ -23,8 +25,8 @@ export default function Home() {
   );
 
   const ranked = useMemo(
-    () => rankCenters(CENTERS, origin, search, DEFAULT_WEIGHTS),
-    [origin, search],
+    () => rankCenters(CENTERS, origin, search, weights),
+    [origin, search, weights],
   );
 
   const selected = useMemo(
@@ -45,6 +47,10 @@ export default function Home() {
       </header>
 
       <SearchBar value={search} onChange={setSearch} />
+
+      <div className="mt-3">
+        <WeightTuner weights={weights} onChange={setWeights} />
+      </div>
 
       <div className="mt-4 flex items-center justify-between text-xs text-slate-500">
         <span>
