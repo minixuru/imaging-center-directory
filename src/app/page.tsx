@@ -243,7 +243,7 @@ export default function Home() {
           )}
         </aside>
 
-        <div className="min-h-[320px] flex-1 lg:min-h-0">
+        <div className="isolate min-h-[320px] flex-1 lg:min-h-0">
           <MapView
             centers={visible}
             origin={origin}
