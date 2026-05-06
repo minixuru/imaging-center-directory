@@ -44,9 +44,25 @@ Directions / Refer action row, an ACR-accreditation strip (the clinical
 trust signal), the score breakdown bars, modalities, subspecialties, accepted
 insurance, and contact info.
 
-**Top-bar controls:** sort by best match / distance / rating / soonest /
-cost; toggle "Open now" to filter to centers currently accepting patients;
-quick-pick locations for fast demoing.
+**Top-bar controls:**
+
+- **Sort** — best match (composite score) / distance / rating / soonest
+  available / lowest cost.
+- **Open now** — instant filter to centers currently accepting patients
+  (computed live from per-day weekly hours).
+- **Filters** popover — distance radius (1 / 5 / 10 / 25 / 50 / Any mi),
+  state (NY / NJ / TX / IL across the seeded metros), required ACR
+  accreditation seals, subspecialty (Neuro / MSK / Body / Breast / Cardiac /
+  Pediatric), walk-ins accepted, on-site radiologist. Active filters render
+  as removable chips just under the top bar so the user always sees what's
+  narrowing the list.
+- **Quick-pick locations** — Manhattan / Houston / Chicago / Brooklyn /
+  Hoboken for fast demoing.
+
+**Multi-metro seed data:** 20 centers across NYC, Houston, and Chicago, with
+deliberately varied profiles (premium-but-distant, low-cost-but-fewer-seals,
+walk-in-friendly, etc.) so toggling weights or filters visibly re-orders the
+list rather than reshuffling near-identical rows.
 
 ## How the ranking works
 
@@ -77,15 +93,16 @@ See [`src/lib/ranking.ts`](./src/lib/ranking.ts) for the implementation.
 a polished, deployable demo. Leaflet over Mapbox/Google to skip API keys for
 the reviewer.
 
-**Mock geocoder over real one.** A small lookup of NYC-metro zips and
-neighborhoods so the demo works offline. Unknown inputs fall back to NYC and
-flag the warning state — this is closer to how a real product should fail
-than silently snapping to (0,0).
+**Mock geocoder over real one.** A small lookup of zips and neighborhoods
+across the three seeded metros (NYC, Houston, Chicago) so the demo works
+offline. Unknown inputs fall back to NYC and surface a warning — this is
+closer to how a real product should fail than silently snapping to (0,0).
 
-**12 seeded centers, deliberately diverse.** Each center has a different
-profile (premium-but-distant, cheap-but-low-quality, walk-in-friendly, etc.)
-so the ranking visibly re-orders when you tune the weights. If they all
-clustered, the demo would look static.
+**20 seeded centers across 3 metros, deliberately diverse.** Each center has
+a different profile (premium-but-distant, cheap-but-no-accreditation,
+walk-in-friendly, partner-but-overbooked, etc.) so weight tuning and filter
+changes visibly re-order the list rather than reshuffling near-identical
+rows.
 
 **"Network value" as a ranking factor.** This is the answer to the brief's
 hint about thinking beyond clinical factors. Centers that are Expert
