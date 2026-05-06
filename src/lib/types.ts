@@ -75,6 +75,8 @@ export type ImagingCenter = {
   isExpertRadiologyPartner: boolean;
 };
 
+export type SortKey = "match" | "distance" | "rating" | "soonest" | "cost";
+
 /** A search request from a referring provider. */
 export type SearchInput = {
   /** Free-text location (zip, neighborhood, or city). */
