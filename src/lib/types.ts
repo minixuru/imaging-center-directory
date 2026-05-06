@@ -28,6 +28,21 @@ export type InsurancePlan =
 
 export type Coords = { lat: number; lng: number };
 
+export type DayCode = "mon" | "tue" | "wed" | "thu" | "fri" | "sat" | "sun";
+
+/** Hours in 24-hour decimal (7.5 = 7:30). Days that are closed are absent. */
+export type DayHours = { open: number; close: number };
+
+/** Recognized ACR accreditation seals — clinical trust signal. */
+export type Accreditation =
+  | "ACR-MRI"
+  | "ACR-CT"
+  | "ACR-Mammography"
+  | "ACR-Breast-MRI"
+  | "ACR-Ultrasound"
+  | "ACR-Nuclear"
+  | "ACR-Stereotactic-Breast";
+
 export type ImagingCenter = {
   id: string;
   name: string;
@@ -40,8 +55,10 @@ export type ImagingCenter = {
   coords: Coords;
   phone: string;
   hours: string;
+  weeklyHours: Partial<Record<DayCode, DayHours>>;
   modalities: Modality[];
   subspecialties: Subspecialty[];
+  accreditations: Accreditation[];
   /** 1.0 - 5.0 */
   patientRating: number;
   reviewCount: number;
