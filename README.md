@@ -4,7 +4,7 @@ A working prototype of a directory app that helps a referring provider find
 the best imaging center for their patient. Built for the Expert Radiology
 Product Engineer take-home.
 
-**Live demo:** _will be added after Vercel deploy_
+**Live demo:** https://imaging-center-directory.vercel.app
 
 **Deliverables:**
 
