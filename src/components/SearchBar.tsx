@@ -32,7 +32,7 @@ type Props = {
 
 export function SearchBar({ value, onChange }: Props) {
   return (
-    <div className="flex flex-col gap-3 rounded-xl border border-slate-200 bg-white p-4 shadow-sm md:flex-row md:items-center">
+    <div className="flex flex-col gap-2 md:flex-row md:items-center">
       <label className="flex flex-1 items-center gap-2 rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 focus-within:border-slate-400 focus-within:bg-white">
         <MapPin className="h-4 w-4 shrink-0 text-slate-500" />
         <input
