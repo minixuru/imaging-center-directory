@@ -48,13 +48,34 @@ export default function Home() {
 
       <SearchBar value={search} onChange={setSearch} />
 
+      <div className="mt-2 flex flex-wrap items-center gap-1.5 text-xs">
+        <span className="text-slate-400">Try:</span>
+        {[
+          ["Manhattan", "10016"],
+          ["Brooklyn", "11201"],
+          ["Harlem", "10027"],
+          ["Hoboken, NJ", "07030"],
+          ["Westchester", "10595"],
+        ].map(([label, zip]) => (
+          <button
+            key={zip}
+            type="button"
+            onClick={() => setSearch({ ...search, location: zip })}
+            className="rounded-full border border-slate-200 bg-white px-2.5 py-0.5 text-slate-600 hover:border-slate-300 hover:bg-slate-50"
+          >
+            {label}
+          </button>
+        ))}
+      </div>
+
       <div className="mt-3">
         <WeightTuner weights={weights} onChange={setWeights} />
       </div>
 
       <div className="mt-4 flex items-center justify-between text-xs text-slate-500">
         <span>
-          {ranked.length} centers · sorted by composite score
+          {ranked.length} centers · {ranked.filter((c) => c.center.isExpertRadiologyPartner).length} partner ·{" "}
+          sorted by composite score
           {!matched && search.location && (
             <span className="ml-2 rounded-full bg-amber-50 px-2 py-0.5 text-[11px] font-medium text-amber-700 ring-1 ring-amber-200">
               Location not recognized — using NYC as origin
