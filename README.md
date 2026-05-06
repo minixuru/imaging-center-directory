@@ -24,16 +24,29 @@ Requires Node 18+.
 ## What it does
 
 A provider lands on the page, types a patient location (zip, neighborhood, or
-city), optionally filters by modality and insurance plan, and sees a ranked
-list of imaging centers with a composite score, distance, quality, and a
-breakdown of why each one ranked where it did.
+city), filters by modality and insurance, and sees a ranked list of imaging
+centers — full-bleed Google-Maps-style layout with the rail on the left and
+the map filling everything else.
 
-Selecting a center opens a detail panel with full info — modalities,
-subspecialties, in-network insurance, hours, contact, score breakdown by
-factor, and a referral CTA.
+**Each card surfaces:** composite score, visual star rating + review volume,
+"Open until 9pm" / "Closed" status (live, derived from hours), distance, next
+available slot, turnaround time, color-coded modality chips, an Expert
+Radiology partner badge, and warnings for out-of-network or modality
+mismatch.
 
-A map shows all candidate centers around the patient's origin; markers are
-ranked-numbered and selecting one syncs with the list.
+**The map** shows all candidate centers as ranked score-pill markers (top-3
+in emerald, others in white, selected in indigo) with a popup on click. The
+list and map stay in sync.
+
+**The detail panel** has a hero with the center's gradient mark and
+initials, a floating composite-score card with star rating, a Call /
+Directions / Refer action row, an ACR-accreditation strip (the clinical
+trust signal), the score breakdown bars, modalities, subspecialties, accepted
+insurance, and contact info.
+
+**Top-bar controls:** sort by best match / distance / rating / soonest /
+cost; toggle "Open now" to filter to centers currently accepting patients;
+quick-pick locations for fast demoing.
 
 ## How the ranking works
 
