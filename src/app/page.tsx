@@ -1,7 +1,9 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { Map as MapIcon } from "lucide-react";
 import { CenterCard } from "@/components/CenterCard";
+import { CenterDetail } from "@/components/CenterDetail";
 import { SearchBar } from "@/components/SearchBar";
 import { CENTERS, geocode } from "@/lib/data";
 import { DEFAULT_WEIGHTS, rankCenters } from "@/lib/ranking";
@@ -23,6 +25,11 @@ export default function Home() {
   const ranked = useMemo(
     () => rankCenters(CENTERS, origin, search, DEFAULT_WEIGHTS),
     [origin, search],
+  );
+
+  const selected = useMemo(
+    () => ranked.find((s) => s.center.id === selectedId) ?? null,
+    [ranked, selectedId],
   );
 
   return (
@@ -50,26 +57,47 @@ export default function Home() {
         </span>
       </div>
 
-      <section className="mt-3 grid gap-3">
-        {ranked.map((scored, i) => (
-          <CenterCard
-            key={scored.center.id}
-            scored={scored}
-            rank={i + 1}
-            selected={selectedId === scored.center.id}
-            onSelect={() =>
-              setSelectedId(
-                selectedId === scored.center.id ? null : scored.center.id,
-              )
-            }
-          />
-        ))}
-        {ranked.length === 0 && (
-          <div className="rounded-xl border border-slate-200 bg-white p-8 text-center text-sm text-slate-500">
-            No centers match those filters. Try widening your search.
+      <div className="mt-3 grid gap-4 lg:grid-cols-[minmax(0,1fr)_minmax(0,420px)]">
+        <section className="grid gap-3">
+          {ranked.map((scored, i) => (
+            <CenterCard
+              key={scored.center.id}
+              scored={scored}
+              rank={i + 1}
+              selected={selectedId === scored.center.id}
+              onSelect={() =>
+                setSelectedId(
+                  selectedId === scored.center.id ? null : scored.center.id,
+                )
+              }
+            />
+          ))}
+          {ranked.length === 0 && (
+            <div className="rounded-xl border border-slate-200 bg-white p-8 text-center text-sm text-slate-500">
+              No centers match those filters. Try widening your search.
+            </div>
+          )}
+        </section>
+
+        <aside className="lg:sticky lg:top-6 lg:h-[calc(100vh-3rem)]">
+          <div className="h-full overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm">
+            {selected ? (
+              <CenterDetail
+                scored={selected}
+                onClose={() => setSelectedId(null)}
+              />
+            ) : (
+              <div className="flex h-full flex-col items-center justify-center gap-2 p-6 text-center text-slate-500">
+                <MapIcon className="h-8 w-8 text-slate-300" />
+                <p className="text-sm">
+                  Select a center to see details, score breakdown, and contact
+                  info.
+                </p>
+              </div>
+            )}
           </div>
-        )}
-      </section>
+        </aside>
+      </div>
     </main>
   );
 }
