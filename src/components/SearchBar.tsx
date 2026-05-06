@@ -1,28 +1,31 @@
 "use client";
 
 import { MapPin } from "lucide-react";
+import { Select, type SelectOption } from "./Select";
 import type { InsurancePlan, Modality, SearchInput } from "@/lib/types";
 
-const MODALITIES: Modality[] = [
-  "MRI",
-  "CT",
-  "X-Ray",
-  "Ultrasound",
-  "Mammography",
-  "PET-CT",
-  "Fluoroscopy",
-  "DEXA",
+const MODALITY_OPTIONS: SelectOption<Modality | "">[] = [
+  { value: "", label: "Any modality" },
+  { value: "MRI", label: "MRI" },
+  { value: "CT", label: "CT" },
+  { value: "X-Ray", label: "X-Ray" },
+  { value: "Ultrasound", label: "Ultrasound" },
+  { value: "Mammography", label: "Mammography" },
+  { value: "PET-CT", label: "PET-CT" },
+  { value: "Fluoroscopy", label: "Fluoroscopy" },
+  { value: "DEXA", label: "DEXA" },
 ];
 
-const INSURANCE_PLANS: InsurancePlan[] = [
-  "Aetna",
-  "Anthem",
-  "BlueCross",
-  "Cigna",
-  "Humana",
-  "Medicare",
-  "Medicaid",
-  "UnitedHealth",
+const INSURANCE_OPTIONS: SelectOption<InsurancePlan | "">[] = [
+  { value: "", label: "Any insurance" },
+  { value: "Aetna", label: "Aetna" },
+  { value: "Anthem", label: "Anthem" },
+  { value: "BlueCross", label: "BlueCross" },
+  { value: "Cigna", label: "Cigna" },
+  { value: "Humana", label: "Humana" },
+  { value: "Medicare", label: "Medicare" },
+  { value: "Medicaid", label: "Medicaid" },
+  { value: "UnitedHealth", label: "UnitedHealth" },
 ];
 
 type Props = {
@@ -33,7 +36,7 @@ type Props = {
 export function SearchBar({ value, onChange }: Props) {
   return (
     <div className="flex flex-col gap-2 md:flex-row md:items-center">
-      <label className="flex flex-1 items-center gap-2 rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 focus-within:border-slate-400 focus-within:bg-white">
+      <label className="flex flex-1 items-center gap-2 rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 focus-within:border-indigo-500 focus-within:bg-white focus-within:ring-2 focus-within:ring-indigo-100">
         <MapPin className="h-4 w-4 shrink-0 text-slate-500" />
         <input
           className="w-full bg-transparent text-sm text-slate-900 placeholder-slate-400 outline-none"
@@ -42,39 +45,20 @@ export function SearchBar({ value, onChange }: Props) {
           onChange={(e) => onChange({ ...value, location: e.target.value })}
         />
       </label>
-      <select
-        className="rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 outline-none focus:border-slate-400 md:w-44"
+      <Select<Modality | "">
         value={value.modality}
-        onChange={(e) =>
-          onChange({ ...value, modality: e.target.value as Modality | "" })
-        }
-        aria-label="Modality"
-      >
-        <option value="">Any modality</option>
-        {MODALITIES.map((m) => (
-          <option key={m} value={m}>
-            {m}
-          </option>
-        ))}
-      </select>
-      <select
-        className="rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 outline-none focus:border-slate-400 md:w-48"
+        options={MODALITY_OPTIONS}
+        onChange={(modality) => onChange({ ...value, modality })}
+        ariaLabel="Modality"
+        className="md:w-44"
+      />
+      <Select<InsurancePlan | "">
         value={value.insurance}
-        onChange={(e) =>
-          onChange({
-            ...value,
-            insurance: e.target.value as InsurancePlan | "",
-          })
-        }
-        aria-label="Insurance"
-      >
-        <option value="">Any insurance</option>
-        {INSURANCE_PLANS.map((p) => (
-          <option key={p} value={p}>
-            {p}
-          </option>
-        ))}
-      </select>
+        options={INSURANCE_OPTIONS}
+        onChange={(insurance) => onChange({ ...value, insurance })}
+        ariaLabel="Insurance"
+        className="md:w-48"
+      />
     </div>
   );
 }

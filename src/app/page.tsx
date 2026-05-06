@@ -1,6 +1,6 @@
 "use client";
 
-import { ScanSearch } from "lucide-react";
+import { ArrowDownUp, ScanSearch } from "lucide-react";
 import { useMemo, useState } from "react";
 import { ActiveFilterChips } from "@/components/ActiveFilterChips";
 import { CenterCard } from "@/components/CenterCard";
@@ -8,6 +8,7 @@ import { CenterDetail } from "@/components/CenterDetail";
 import { FiltersPopover } from "@/components/FiltersPopover";
 import { MapView } from "@/components/MapView";
 import { SearchBar } from "@/components/SearchBar";
+import { Select, type SelectOption } from "@/components/Select";
 import { WeightTuner } from "@/components/WeightTuner";
 import { CENTERS, geocode } from "@/lib/data";
 import {
@@ -33,12 +34,12 @@ const QUICK_PICKS: Array<[string, string]> = [
   ["Hoboken, NJ", "07030"],
 ];
 
-const SORT_OPTIONS: Array<[SortKey, string]> = [
-  ["match", "Best match"],
-  ["distance", "Distance"],
-  ["rating", "Rating"],
-  ["soonest", "Soonest available"],
-  ["cost", "Lowest cost"],
+const SORT_OPTIONS: SelectOption<SortKey>[] = [
+  { value: "match", label: "Best match" },
+  { value: "distance", label: "Distance" },
+  { value: "rating", label: "Rating" },
+  { value: "soonest", label: "Soonest available" },
+  { value: "cost", label: "Lowest cost" },
 ];
 
 const AVAILABLE_STATES = Array.from(
@@ -152,18 +153,16 @@ export default function Home() {
               onChange={setFilters}
               availableStates={AVAILABLE_STATES}
             />
-            <select
-              className="rounded-lg border border-slate-200 bg-white py-2 pl-3 pr-8 text-xs font-medium text-slate-700 outline-none hover:border-slate-300 focus:border-indigo-500"
+            <Select<SortKey>
               value={sortKey}
-              onChange={(e) => setSortKey(e.target.value as SortKey)}
-              aria-label="Sort by"
-            >
-              {SORT_OPTIONS.map(([k, l]) => (
-                <option key={k} value={k}>
-                  Sort: {l}
-                </option>
-              ))}
-            </select>
+              options={SORT_OPTIONS}
+              onChange={setSortKey}
+              prefix="Sort:"
+              icon={<ArrowDownUp className="h-3.5 w-3.5" />}
+              ariaLabel="Sort by"
+              align="right"
+              className="min-w-[180px]"
+            />
           </div>
         </div>
 
@@ -211,7 +210,9 @@ export default function Home() {
                 partner ·{" "}
                 {sortKey === "match"
                   ? "best match"
-                  : SORT_OPTIONS.find(([k]) => k === sortKey)?.[1].toLowerCase()}
+                  : SORT_OPTIONS.find(
+                      (o) => o.value === sortKey,
+                    )?.label.toLowerCase()}
               </div>
               <div className="flex-1 overflow-y-auto p-3">
                 <div className="grid gap-3">
