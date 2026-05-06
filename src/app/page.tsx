@@ -2,14 +2,22 @@
 
 import { ScanSearch } from "lucide-react";
 import { useMemo, useState } from "react";
+import { ActiveFilterChips } from "@/components/ActiveFilterChips";
 import { CenterCard } from "@/components/CenterCard";
 import { CenterDetail } from "@/components/CenterDetail";
+import { FiltersPopover } from "@/components/FiltersPopover";
 import { MapView } from "@/components/MapView";
 import { SearchBar } from "@/components/SearchBar";
 import { WeightTuner } from "@/components/WeightTuner";
 import { CENTERS, geocode } from "@/lib/data";
+import {
+  EMPTY_FILTERS,
+  activeFilterCount,
+  applyFilters,
+} from "@/lib/filters";
 import { DEFAULT_WEIGHTS, rankCenters } from "@/lib/ranking";
 import type {
+  FilterState,
   RankingWeights,
   ScoredCenter,
   SearchInput,
@@ -19,10 +27,10 @@ import { isOpenNow } from "@/lib/visuals";
 
 const QUICK_PICKS: Array<[string, string]> = [
   ["Manhattan", "10016"],
+  ["Houston, TX", "77030"],
+  ["Chicago, IL", "60611"],
   ["Brooklyn", "11201"],
-  ["Harlem", "10027"],
   ["Hoboken, NJ", "07030"],
-  ["Westchester", "10595"],
 ];
 
 const SORT_OPTIONS: Array<[SortKey, string]> = [
@@ -32,6 +40,10 @@ const SORT_OPTIONS: Array<[SortKey, string]> = [
   ["soonest", "Soonest available"],
   ["cost", "Lowest cost"],
 ];
+
+const AVAILABLE_STATES = Array.from(
+  new Set(CENTERS.map((c) => c.address.state)),
+).sort();
 
 function applySort(arr: ScoredCenter[], key: SortKey): ScoredCenter[] {
   const sorted = [...arr];
@@ -63,6 +75,7 @@ export default function Home() {
     insurance: "",
   });
   const [weights, setWeights] = useState<RankingWeights>(DEFAULT_WEIGHTS);
+  const [filters, setFilters] = useState<FilterState>(EMPTY_FILTERS);
   const [sortKey, setSortKey] = useState<SortKey>("match");
   const [openNowOnly, setOpenNowOnly] = useState(false);
   const [selectedId, setSelectedId] = useState<string | null>(null);
@@ -78,10 +91,10 @@ export default function Home() {
   );
 
   const visible = useMemo(() => {
-    let arr = ranked;
+    let arr = applyFilters(ranked, filters);
     if (openNowOnly) arr = arr.filter((s) => isOpenNow(s.center).open);
     return applySort(arr, sortKey);
-  }, [ranked, sortKey, openNowOnly]);
+  }, [ranked, filters, sortKey, openNowOnly]);
 
   const selected = useMemo(
     () => visible.find((s) => s.center.id === selectedId) ?? null,
@@ -90,6 +103,7 @@ export default function Home() {
   const partnerCount = visible.filter(
     (c) => c.center.isExpertRadiologyPartner,
   ).length;
+  const filterCount = activeFilterCount(filters);
 
   return (
     <main className="flex h-dvh flex-col bg-slate-50">
@@ -133,6 +147,11 @@ export default function Home() {
               />
               Open now
             </button>
+            <FiltersPopover
+              filters={filters}
+              onChange={setFilters}
+              availableStates={AVAILABLE_STATES}
+            />
             <select
               className="rounded-lg border border-slate-200 bg-white py-2 pl-3 pr-8 text-xs font-medium text-slate-700 outline-none hover:border-slate-300 focus:border-indigo-500"
               value={sortKey}
@@ -166,6 +185,12 @@ export default function Home() {
             </span>
           )}
         </div>
+
+        {filterCount > 0 && (
+          <div className="border-t border-slate-100 bg-indigo-50/30 px-4 py-1.5">
+            <ActiveFilterChips filters={filters} onChange={setFilters} />
+          </div>
+        )}
       </header>
 
       {/* Body: left rail + map fills remaining viewport */}
@@ -182,7 +207,8 @@ export default function Home() {
                 <WeightTuner weights={weights} onChange={setWeights} />
               </div>
               <div className="shrink-0 border-b border-slate-100 px-3 py-2 text-xs text-slate-500">
-                {visible.length} centers · {partnerCount} partner ·{" "}
+                {visible.length} of {CENTERS.length} centers · {partnerCount}{" "}
+                partner ·{" "}
                 {sortKey === "match"
                   ? "best match"
                   : SORT_OPTIONS.find(([k]) => k === sortKey)?.[1].toLowerCase()}
@@ -206,8 +232,9 @@ export default function Home() {
                   ))}
                   {visible.length === 0 && (
                     <div className="rounded-xl border border-slate-200 bg-white p-6 text-center text-sm text-slate-500">
-                      No centers match those filters. Try widening your search
-                      or turning off &ldquo;Open now&rdquo;.
+                      No centers match the current filters. Try widening the
+                      distance, removing a filter, or turning off &ldquo;Open
+                      now&rdquo;.
                     </div>
                   )}
                 </div>

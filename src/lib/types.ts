@@ -77,6 +77,23 @@ export type ImagingCenter = {
 
 export type SortKey = "match" | "distance" | "rating" | "soonest" | "cost";
 
+/**
+ * User-applied filters that narrow the result set BEFORE ranking is shown.
+ * Empty arrays / null mean "no constraint."
+ */
+export type FilterState = {
+  /** Hard radius cap in miles. null = no cap. */
+  maxDistanceMiles: number | null;
+  /** Two-letter state codes; OR semantics. */
+  states: string[];
+  /** Required ACR seals; AND semantics (must have all). */
+  accreditations: Accreditation[];
+  /** Required subspecialties; AND semantics. */
+  subspecialties: Subspecialty[];
+  walkInsOnly: boolean;
+  onsiteRadiologistOnly: boolean;
+};
+
 /** A search request from a referring provider. */
 export type SearchInput = {
   /** Free-text location (zip, neighborhood, or city). */
