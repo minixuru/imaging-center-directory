@@ -1,0 +1,1381 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Imaging Center Directory · Stakeholder Brief</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --indigo-50: #eef2ff;
+        --indigo-100: #e0e7ff;
+        --indigo-200: #c7d2fe;
+        --indigo-500: #6366f1;
+        --indigo-600: #4f46e5;
+        --indigo-700: #4338ca;
+        --violet-600: #7c3aed;
+        --slate-900: #0f172a;
+        --slate-800: #1e293b;
+        --slate-700: #334155;
+        --slate-600: #475569;
+        --slate-500: #64748b;
+        --slate-400: #94a3b8;
+        --slate-300: #cbd5e1;
+        --slate-200: #e2e8f0;
+        --slate-100: #f1f5f9;
+        --slate-50: #f8fafc;
+        --emerald-50: #ecfdf5;
+        --emerald-500: #10b981;
+        --emerald-600: #059669;
+        --emerald-700: #047857;
+        --amber-50: #fffbeb;
+        --amber-500: #f59e0b;
+        --amber-700: #b45309;
+        --rose-50: #fff1f2;
+        --rose-500: #f43f5e;
+        --rose-700: #be123c;
+        --sky-50: #f0f9ff;
+        --sky-500: #0ea5e9;
+        --sky-700: #0369a1;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html {
+        scroll-behavior: smooth;
+        scroll-padding-top: 64px;
+      }
+
+      body {
+        font-family: "Inter", system-ui, -apple-system, sans-serif;
+        color: var(--slate-700);
+        line-height: 1.6;
+        background: white;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      a {
+        color: var(--indigo-600);
+        text-decoration: none;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+
+      .container {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0 32px;
+      }
+
+      /* ── Top nav ── */
+      .topnav {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: saturate(180%) blur(10px);
+        -webkit-backdrop-filter: saturate(180%) blur(10px);
+        border-bottom: 1px solid var(--slate-200);
+      }
+      .topnav .container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 60px;
+      }
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        font-weight: 700;
+        color: var(--slate-900);
+        font-size: 14px;
+      }
+      .brand-mark {
+        width: 28px;
+        height: 28px;
+        border-radius: 8px;
+        background: linear-gradient(135deg, var(--indigo-500), var(--violet-600));
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+      }
+      .brand-mark svg {
+        width: 16px;
+        height: 16px;
+      }
+      .nav-links {
+        display: flex;
+        gap: 24px;
+        font-size: 13px;
+      }
+      .nav-links a {
+        color: var(--slate-600);
+      }
+      .nav-links a:hover {
+        color: var(--slate-900);
+        text-decoration: none;
+      }
+      @media (max-width: 700px) {
+        .nav-links {
+          display: none;
+        }
+      }
+
+      /* ── Buttons ── */
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 12px 18px;
+        border-radius: 10px;
+        font-weight: 600;
+        font-size: 14px;
+        transition: all 0.15s ease;
+        text-decoration: none;
+      }
+      .btn-primary {
+        background: var(--slate-900);
+        color: white;
+      }
+      .btn-primary:hover {
+        background: var(--slate-800);
+        text-decoration: none;
+      }
+      .btn-ghost {
+        background: white;
+        color: var(--slate-900);
+        border: 1px solid var(--slate-300);
+      }
+      .btn-ghost:hover {
+        border-color: var(--slate-400);
+        background: var(--slate-50);
+        text-decoration: none;
+      }
+      .btn svg {
+        width: 16px;
+        height: 16px;
+      }
+
+      /* ── Sections ── */
+      section {
+        padding: 96px 0;
+        border-bottom: 1px solid var(--slate-100);
+      }
+      section.hero {
+        padding: 64px 0 96px;
+        border-bottom: none;
+        background:
+          radial-gradient(
+            ellipse at top right,
+            var(--indigo-50) 0%,
+            transparent 60%
+          ),
+          radial-gradient(
+            ellipse at bottom left,
+            var(--sky-50) 0%,
+            transparent 60%
+          );
+      }
+      .eyebrow {
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        font-size: 12px;
+        font-weight: 600;
+        color: var(--indigo-600);
+        margin-bottom: 14px;
+      }
+      h1 {
+        font-size: clamp(36px, 5vw, 60px);
+        font-weight: 800;
+        line-height: 1.05;
+        letter-spacing: -0.02em;
+        color: var(--slate-900);
+        margin-bottom: 20px;
+      }
+      h1 .accent {
+        background: linear-gradient(135deg, var(--indigo-600), var(--violet-600));
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      h2 {
+        font-size: clamp(28px, 3vw, 40px);
+        font-weight: 700;
+        line-height: 1.15;
+        letter-spacing: -0.015em;
+        color: var(--slate-900);
+        margin-bottom: 16px;
+      }
+      h3 {
+        font-size: 18px;
+        font-weight: 600;
+        color: var(--slate-900);
+        margin-bottom: 8px;
+      }
+      .section-lead {
+        font-size: 18px;
+        max-width: 720px;
+        margin-bottom: 48px;
+        color: var(--slate-600);
+      }
+      .hero-lead {
+        font-size: 20px;
+        max-width: 640px;
+        margin-bottom: 32px;
+        color: var(--slate-600);
+      }
+      .hero-actions {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-top: 8px;
+      }
+
+      /* ── Grids ── */
+      .grid {
+        display: grid;
+        gap: 20px;
+      }
+      .grid-3 {
+        grid-template-columns: repeat(3, 1fr);
+      }
+      .grid-2 {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .grid-4 {
+        grid-template-columns: repeat(4, 1fr);
+      }
+      @media (max-width: 900px) {
+        .grid-3,
+        .grid-4 {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+      @media (max-width: 600px) {
+        .grid-2,
+        .grid-3,
+        .grid-4 {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* ── Cards ── */
+      .card {
+        background: white;
+        border: 1px solid var(--slate-200);
+        border-radius: 16px;
+        padding: 24px;
+        transition: all 0.15s ease;
+      }
+      .card:hover {
+        border-color: var(--slate-300);
+        box-shadow: 0 4px 12px rgba(15, 23, 42, 0.05);
+      }
+      .card-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 10px;
+        background: var(--indigo-50);
+        color: var(--indigo-600);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 16px;
+      }
+      .card-icon svg {
+        width: 20px;
+        height: 20px;
+      }
+      .card p {
+        font-size: 14px;
+        color: var(--slate-600);
+      }
+
+      .stat-card {
+        padding: 28px 24px;
+        text-align: center;
+        background: linear-gradient(180deg, white, var(--slate-50));
+      }
+      .stat-num {
+        font-size: 36px;
+        font-weight: 800;
+        color: var(--slate-900);
+        letter-spacing: -0.02em;
+        line-height: 1;
+      }
+      .stat-label {
+        font-size: 13px;
+        color: var(--slate-500);
+        margin-top: 6px;
+      }
+
+      /* ── Compare panel (Today vs Tomorrow) ── */
+      .compare {
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
+        gap: 24px;
+        align-items: stretch;
+      }
+      .compare-arrow {
+        align-self: center;
+        color: var(--indigo-500);
+      }
+      .compare-arrow svg {
+        width: 32px;
+        height: 32px;
+      }
+      .compare-card {
+        border-radius: 16px;
+        padding: 28px;
+      }
+      .compare-card.bad {
+        background: var(--slate-50);
+        border: 1px solid var(--slate-200);
+      }
+      .compare-card.good {
+        background: linear-gradient(180deg, var(--indigo-50), white);
+        border: 1px solid var(--indigo-200);
+      }
+      .compare-card h3 {
+        margin-bottom: 16px;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .compare-card ul {
+        list-style: none;
+        font-size: 14px;
+        color: var(--slate-700);
+      }
+      .compare-card li {
+        padding: 6px 0;
+        display: flex;
+        gap: 8px;
+        align-items: flex-start;
+      }
+      .compare-card li::before {
+        content: "—";
+        color: var(--slate-400);
+        flex-shrink: 0;
+      }
+      @media (max-width: 800px) {
+        .compare {
+          grid-template-columns: 1fr;
+        }
+        .compare-arrow {
+          transform: rotate(90deg);
+          justify-self: center;
+        }
+      }
+
+      /* ── Three loops diagram ── */
+      .loops {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+        margin-bottom: 32px;
+      }
+      .loop-node {
+        text-align: center;
+        padding: 24px 20px;
+        border: 1px solid var(--slate-200);
+        border-radius: 16px;
+        background: white;
+        position: relative;
+      }
+      .loop-node .icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 12px;
+        margin: 0 auto 12px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+      }
+      .loop-1 .icon {
+        background: linear-gradient(135deg, var(--indigo-500), var(--indigo-600));
+      }
+      .loop-2 .icon {
+        background: linear-gradient(135deg, var(--emerald-500), var(--emerald-600));
+      }
+      .loop-3 .icon {
+        background: linear-gradient(135deg, var(--violet-600), #ec4899);
+      }
+      .loop-node .icon svg {
+        width: 24px;
+        height: 24px;
+      }
+      .loop-title {
+        font-weight: 700;
+        color: var(--slate-900);
+        margin-bottom: 6px;
+        font-size: 16px;
+      }
+      .loop-body {
+        font-size: 13px;
+        color: var(--slate-600);
+        line-height: 1.5;
+      }
+      @media (max-width: 800px) {
+        .loops {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* ── Score factors table ── */
+      .factors {
+        display: grid;
+        gap: 12px;
+      }
+      .factor-row {
+        display: grid;
+        grid-template-columns: 200px 1fr 1fr;
+        gap: 24px;
+        padding: 16px 20px;
+        background: white;
+        border: 1px solid var(--slate-200);
+        border-radius: 12px;
+        align-items: center;
+      }
+      .factor-row.network {
+        background: linear-gradient(90deg, var(--indigo-50), white);
+        border-color: var(--indigo-200);
+      }
+      .factor-name {
+        font-weight: 600;
+        color: var(--slate-900);
+        font-size: 15px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .factor-name .pill {
+        font-size: 10px;
+        background: var(--indigo-100);
+        color: var(--indigo-700);
+        padding: 2px 6px;
+        border-radius: 999px;
+        font-weight: 600;
+      }
+      .factor-signal,
+      .factor-why {
+        font-size: 13px;
+        color: var(--slate-600);
+      }
+      @media (max-width: 800px) {
+        .factor-row {
+          grid-template-columns: 1fr;
+          gap: 6px;
+        }
+      }
+
+      /* ── Pull quote ── */
+      .pullquote {
+        margin: 48px auto;
+        max-width: 760px;
+        padding: 32px;
+        border-left: 4px solid var(--indigo-600);
+        background: var(--slate-50);
+        border-radius: 0 16px 16px 0;
+        font-size: 22px;
+        line-height: 1.4;
+        color: var(--slate-900);
+        font-weight: 500;
+        letter-spacing: -0.01em;
+      }
+      .pullquote em {
+        font-style: normal;
+        background: linear-gradient(135deg, var(--indigo-600), var(--violet-600));
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-weight: 700;
+      }
+
+      /* ── Roadmap timeline ── */
+      .timeline {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+      }
+      .phase {
+        background: white;
+        border: 1px solid var(--slate-200);
+        border-radius: 16px;
+        overflow: hidden;
+      }
+      .phase-head {
+        padding: 16px 20px;
+        color: white;
+        font-weight: 700;
+        font-size: 13px;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+      .phase-1 .phase-head {
+        background: linear-gradient(135deg, var(--indigo-500), var(--indigo-600));
+      }
+      .phase-2 .phase-head {
+        background: linear-gradient(135deg, var(--sky-500), var(--indigo-500));
+      }
+      .phase-3 .phase-head {
+        background: linear-gradient(135deg, var(--emerald-500), var(--sky-500));
+      }
+      .phase-4 .phase-head {
+        background: linear-gradient(135deg, var(--violet-600), var(--emerald-500));
+      }
+      .phase-window {
+        opacity: 0.85;
+        font-size: 11px;
+        margin-top: 2px;
+        font-weight: 500;
+        letter-spacing: 0.04em;
+      }
+      .phase-body {
+        padding: 16px 20px;
+      }
+      .phase-goal {
+        font-size: 13px;
+        color: var(--slate-700);
+        font-weight: 600;
+        margin-bottom: 12px;
+        padding-bottom: 12px;
+        border-bottom: 1px dashed var(--slate-200);
+      }
+      .phase-list {
+        list-style: none;
+      }
+      .phase-list li {
+        font-size: 13px;
+        color: var(--slate-600);
+        padding: 6px 0;
+        line-height: 1.4;
+        position: relative;
+        padding-left: 14px;
+      }
+      .phase-list li::before {
+        content: "›";
+        position: absolute;
+        left: 0;
+        color: var(--indigo-500);
+        font-weight: 700;
+      }
+      @media (max-width: 1000px) {
+        .timeline {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+      @media (max-width: 600px) {
+        .timeline {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* ── Steps (demo flow) ── */
+      .steps {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+      }
+      .step {
+        display: flex;
+        gap: 16px;
+        padding: 20px;
+        background: white;
+        border: 1px solid var(--slate-200);
+        border-radius: 12px;
+      }
+      .step-num {
+        flex-shrink: 0;
+        width: 32px;
+        height: 32px;
+        border-radius: 8px;
+        background: var(--indigo-600);
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 14px;
+      }
+      .step-body {
+        font-size: 14px;
+        color: var(--slate-600);
+      }
+      .step-body strong {
+        color: var(--slate-900);
+        display: block;
+        margin-bottom: 4px;
+      }
+      @media (max-width: 700px) {
+        .steps {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* ── Metrics ladder ── */
+      .metrics {
+        display: grid;
+        gap: 12px;
+      }
+      .metric-row {
+        display: grid;
+        grid-template-columns: 180px 1fr 1.4fr;
+        gap: 16px;
+        padding: 14px 18px;
+        border: 1px solid var(--slate-200);
+        border-radius: 10px;
+        background: white;
+        align-items: center;
+        font-size: 13px;
+      }
+      .metric-row.priority {
+        background: linear-gradient(90deg, var(--emerald-50), white);
+        border-color: #a7f3d0;
+      }
+      .metric-layer {
+        font-weight: 700;
+        color: var(--slate-900);
+      }
+      .metric-name {
+        color: var(--slate-700);
+        font-weight: 500;
+      }
+      .metric-why {
+        color: var(--slate-500);
+      }
+      @media (max-width: 800px) {
+        .metric-row {
+          grid-template-columns: 1fr;
+          gap: 4px;
+        }
+      }
+
+      /* ── Risks ── */
+      .risk {
+        background: var(--amber-50);
+        border-left: 4px solid var(--amber-500);
+        padding: 18px 20px;
+        border-radius: 0 10px 10px 0;
+      }
+      .risk h3 {
+        color: var(--amber-700);
+        font-size: 14px;
+        margin-bottom: 4px;
+      }
+      .risk p {
+        font-size: 13px;
+        color: var(--slate-700);
+      }
+      .risk p strong {
+        color: var(--slate-900);
+      }
+
+      /* ── Closing ── */
+      .closing {
+        background: linear-gradient(135deg, var(--slate-900), var(--indigo-700));
+        color: white;
+        padding: 96px 0;
+        border-bottom: none;
+      }
+      .closing h2 {
+        color: white;
+        max-width: 720px;
+      }
+      .closing .section-lead {
+        color: rgba(255, 255, 255, 0.75);
+      }
+      .closing .btn-primary {
+        background: white;
+        color: var(--slate-900);
+      }
+      .closing .btn-primary:hover {
+        background: var(--slate-100);
+      }
+      .closing .btn-ghost {
+        background: transparent;
+        color: white;
+        border-color: rgba(255, 255, 255, 0.3);
+      }
+      .closing .btn-ghost:hover {
+        background: rgba(255, 255, 255, 0.1);
+      }
+
+      /* ── Footer ── */
+      footer {
+        padding: 32px 0;
+        font-size: 13px;
+        color: var(--slate-500);
+        text-align: center;
+        background: var(--slate-50);
+      }
+
+      /* ── Utility ── */
+      .stack-md > * + * {
+        margin-top: 16px;
+      }
+      .accent-line {
+        display: inline-block;
+        width: 32px;
+        height: 3px;
+        border-radius: 2px;
+        background: var(--indigo-600);
+        margin-bottom: 16px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ─── Sticky top nav ─── -->
+    <nav class="topnav">
+      <div class="container">
+        <a class="brand" href="#top">
+          <span class="brand-mark">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"></circle>
+              <path d="m21 21-4.3-4.3"></path>
+            </svg>
+          </span>
+          Imaging Center Directory
+        </a>
+        <div class="nav-links">
+          <a href="#opportunity">Opportunity</a>
+          <a href="#built">What we built</a>
+          <a href="#strategy">Strategy</a>
+          <a href="#roadmap">Roadmap</a>
+          <a href="#metrics">Metrics</a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- ─── Hero ─── -->
+    <section class="hero" id="top">
+      <div class="container">
+        <div class="eyebrow">Stakeholder brief · Expert Radiology</div>
+        <h1>
+          A referral directory that <span class="accent">compounds into network value.</span>
+        </h1>
+        <p class="hero-lead">
+          A working prototype of an Imaging Center Directory App, plus a
+          12-month plan for turning every referral search into routing volume
+          for Expert Radiology's interpretation network.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="https://imaging-center-directory.vercel.app" target="_blank" rel="noopener">
+            View live demo
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 12h14"></path>
+              <path d="m12 5 7 7-7 7"></path>
+            </svg>
+          </a>
+          <a class="btn btn-ghost" href="https://github.com/minixuru/imaging-center-directory" target="_blank" rel="noopener">
+            Code repository
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── The opportunity ─── -->
+    <section id="opportunity">
+      <div class="container">
+        <div class="eyebrow">The opportunity</div>
+        <h2>Today, referrers pick a center the way they did in 2005.</h2>
+        <p class="section-lead">
+          They keep a printed list, ask the front desk who they trust, or
+          guess. Patients end up at out-of-network, low-quality, or far-away
+          centers — and Expert Radiology's network captures less of the
+          referral flow than the brand and quality should command.
+        </p>
+
+        <div class="compare">
+          <div class="compare-card bad">
+            <h3>Today</h3>
+            <ul>
+              <li>Outdated lists, paper rolodexes, word-of-mouth</li>
+              <li>No visibility into turnaround, capacity, or accreditation</li>
+              <li>Patients no-show after long-distance referrals</li>
+              <li>Referrers can't tell ER partners from generic centers</li>
+              <li>Zero signal back: did the referral happen? Did it land?</li>
+            </ul>
+          </div>
+          <div class="compare-arrow" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 12h14"></path>
+              <path d="m12 5 7 7-7 7"></path>
+            </svg>
+          </div>
+          <div class="compare-card good">
+            <h3>What we're building</h3>
+            <ul>
+              <li>A modern directory referrers actually want to open</li>
+              <li>Live ranking by distance, quality, and network value</li>
+              <li>Transparent score with auditable factors — no black box</li>
+              <li>ER partner uplift surfaces routing opportunities</li>
+              <li>Every search becomes a referral attribution signal</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="grid grid-4" style="margin-top: 56px">
+          <div class="card stat-card">
+            <div class="stat-num">350+</div>
+            <div class="stat-label">Imaging facilities ER serves</div>
+          </div>
+          <div class="card stat-card">
+            <div class="stat-num">500K+</div>
+            <div class="stat-label">Cases interpreted</div>
+          </div>
+          <div class="card stat-card">
+            <div class="stat-num">80%</div>
+            <div class="stat-label">YoY growth</div>
+          </div>
+          <div class="card stat-card">
+            <div class="stat-num">All&nbsp;50</div>
+            <div class="stat-label">U.S. states covered</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── What we built ─── -->
+    <section id="built">
+      <div class="container">
+        <div class="eyebrow">Working prototype</div>
+        <h2>What's live today.</h2>
+        <p class="section-lead">
+          Built end-to-end as a working web app. Real ranking logic, real
+          filters, real map. Mock data for 20 imaging centers across NYC,
+          Houston, and Chicago — diverse enough that toggling weights or
+          filters visibly re-orders the list.
+        </p>
+
+        <div class="grid grid-3">
+          <div class="card">
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"></circle>
+                <path d="m21 21-4.3-4.3"></path>
+              </svg>
+            </div>
+            <h3>Search by location</h3>
+            <p>
+              Type a zip, neighborhood, or city. The map and list re-center
+              instantly. Quick-pick chips for fast demos.
+            </p>
+          </div>
+          <div class="card">
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="m12 14 4-4"></path>
+                <path d="M3.34 19a10 10 0 1 1 17.32 0"></path>
+              </svg>
+            </div>
+            <h3>Composite ranking</h3>
+            <p>
+              Six factors blended into one 0–100 score: distance, quality,
+              turnaround, cost, availability, and network value.
+            </p>
+          </div>
+          <div class="card">
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 6H3"></path>
+                <path d="M10 12H3"></path>
+                <path d="M10 18H3"></path>
+                <circle cx="17" cy="15" r="3"></circle>
+              </svg>
+            </div>
+            <h3>Tunable weights</h3>
+            <p>
+              Live sliders let providers (or our team) see why the rank is
+              what it is. The model is auditable, not a black box.
+            </p>
+          </div>
+          <div class="card">
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path>
+                <path d="m9 12 2 2 4-4"></path>
+              </svg>
+            </div>
+            <h3>Clinical filters</h3>
+            <p>
+              Distance radius, state, ACR accreditation seals, subspecialty,
+              walk-ins, on-site radiologist. Active filters render as
+              removable chips.
+            </p>
+          </div>
+          <div class="card">
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect width="18" height="11" x="3" y="11" rx="2" ry="2"></rect>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+              </svg>
+            </div>
+            <h3>Detail panel</h3>
+            <p>
+              Center hero, score breakdown, accreditations strip, modalities,
+              insurance, contact, and a "Send referral" CTA.
+            </p>
+          </div>
+          <div class="card">
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5z"></path>
+                <path d="M14 2v6h6"></path>
+                <path d="M16 13H8"></path>
+                <path d="M16 17H8"></path>
+                <path d="M10 9H8"></path>
+              </svg>
+            </div>
+            <h3>Live, mobile-ready</h3>
+            <p>
+              Deployed to production. Full-bleed Google-Maps-style layout on
+              desktop; stacks gracefully on mobile.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── Strategic frame ─── -->
+    <section id="strategy">
+      <div class="container">
+        <div class="eyebrow">Strategic frame</div>
+        <h2>The directory is a wedge, not a destination.</h2>
+        <p class="section-lead">
+          A search box gets you a session. A ranking engine that closes the
+          loop on referral attribution gets you a moat. We're optimizing
+          three reinforcing loops at the same time.
+        </p>
+
+        <div class="loops">
+          <div class="loop-node loop-1">
+            <div class="icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+                <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+              </svg>
+            </div>
+            <div class="loop-title">Provider</div>
+            <div class="loop-body">
+              Faster, more confident decisions. Less leakage. Repeat trust as
+              referrals consistently land.
+            </div>
+          </div>
+          <div class="loop-node loop-2">
+            <div class="icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path>
+              </svg>
+            </div>
+            <div class="loop-title">Patient</div>
+            <div class="loop-body">
+              Closer scans, in-network costs, faster turnaround. Better
+              adherence — fewer no-shows that waste capacity.
+            </div>
+          </div>
+          <div class="loop-node loop-3">
+            <div class="icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 3v18h18"></path>
+                <path d="m19 9-5 5-4-4-3 3"></path>
+              </svg>
+            </div>
+            <div class="loop-title">Network</div>
+            <div class="loop-body">
+              Routing volume into ER partner centers, which compounds into
+              interpretation revenue and PrecisionPlus reports.
+            </div>
+          </div>
+        </div>
+
+        <div class="pullquote">
+          The directory looks like a search box. <em>It's actually a referral
+          attribution engine</em> — and that's where the long-term defensibility
+          lives.
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── Composite score ─── -->
+    <section>
+      <div class="container">
+        <div class="eyebrow">How the recommendation works</div>
+        <h2>Six factors. One transparent score.</h2>
+        <p class="section-lead">
+          Each center gets a 0–100 composite from six weighted sub-scores.
+          The weights are tunable in the UI so the reviewer can <em>see</em>
+          the model react. Clinicians won't trust a black box; they'll
+          adopt a model whose math they can audit.
+        </p>
+
+        <div class="factors">
+          <div class="factor-row">
+            <div class="factor-name">Distance</div>
+            <div class="factor-signal">Great-circle miles from patient</div>
+            <div class="factor-why">Adherence drops fast with travel time</div>
+          </div>
+          <div class="factor-row">
+            <div class="factor-name">Quality</div>
+            <div class="factor-signal">Patient rating × review volume</div>
+            <div class="factor-why">Stars alone are noisy at low N</div>
+          </div>
+          <div class="factor-row">
+            <div class="factor-name">Turnaround</div>
+            <div class="factor-signal">Median scan-to-final-report hours</div>
+            <div class="factor-why">Drives provider satisfaction & re-referral</div>
+          </div>
+          <div class="factor-row">
+            <div class="factor-name">Cost</div>
+            <div class="factor-signal">Estimated patient out-of-pocket</div>
+            <div class="factor-why">Affordability and value-based-care signals</div>
+          </div>
+          <div class="factor-row">
+            <div class="factor-name">Availability</div>
+            <div class="factor-signal">Hours until next open appointment</div>
+            <div class="factor-why">Same-week beats higher-quality-but-3-weeks-out</div>
+          </div>
+          <div class="factor-row network">
+            <div class="factor-name">
+              Network value
+              <span class="pill">ER moat</span>
+            </div>
+            <div class="factor-signal">Expert Radiology partner uplift</div>
+            <div class="factor-why">Routes interpretation work into the ER network</div>
+          </div>
+        </div>
+
+        <div class="pullquote">
+          <em>Network value</em> is the answer to "what's beyond clinical?" Routing
+          volume to partner centers serves the patient (better report), the
+          referrer (faster turnaround), and the business (interpretation
+          revenue) — all at once.
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── Demo flow ─── -->
+    <section>
+      <div class="container">
+        <div class="eyebrow">A 60-second tour</div>
+        <h2>What to try in the live demo.</h2>
+        <p class="section-lead">
+          Open
+          <a href="https://imaging-center-directory.vercel.app" target="_blank" rel="noopener">imaging-center-directory.vercel.app</a>
+          and walk this in under a minute.
+        </p>
+
+        <div class="steps">
+          <div class="step">
+            <div class="step-num">1</div>
+            <div class="step-body">
+              <strong>Type 77030 (Houston) into the location field.</strong>
+              The list and map re-center on the Texas Medical Center; the
+              top-3 markers turn emerald.
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">2</div>
+            <div class="step-body">
+              <strong>Open Filters → toggle ACR · Mammography.</strong>
+              Centers without that accreditation drop from the list. The
+              "Active" chip strip appears.
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">3</div>
+            <div class="step-body">
+              <strong>Switch Sort to "Lowest cost."</strong>
+              Watch the list completely reorder — the cheapest in-radius
+              centers float up.
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">4</div>
+            <div class="step-body">
+              <strong>Click any center card.</strong>
+              The detail panel slides in: hero, score breakdown, ACR strip,
+              modalities, insurance, Call / Directions / Refer actions.
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">5</div>
+            <div class="step-body">
+              <strong>Open Ranking weights and drag the sliders.</strong>
+              The list re-ranks live as the model recomputes. The score
+              breakdown bars in detail update in lockstep.
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">6</div>
+            <div class="step-body">
+              <strong>Click "Open now" in the top bar.</strong>
+              Centers currently outside business hours drop out; status is
+              computed live from per-day weekly hours.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── Roadmap ─── -->
+    <section id="roadmap">
+      <div class="container">
+        <div class="eyebrow">12-month roadmap</div>
+        <h2>From prototype to network compounding.</h2>
+        <p class="section-lead">
+          Trust beats features. Two-sided liquidity beats single-sided
+          delight. Closing the referral loop beats adding ranking factors.
+          The plan reflects those priorities.
+        </p>
+
+        <div class="timeline">
+          <div class="phase phase-1">
+            <div class="phase-head">
+              Phase 1
+              <div class="phase-window">0–30 DAYS</div>
+            </div>
+            <div class="phase-body">
+              <div class="phase-goal">
+                Foundation & data trust. One design partner using it daily.
+              </div>
+              <ul class="phase-list">
+                <li>Real center data, one metro pilot</li>
+                <li>Replace mock geocoder with Mapbox</li>
+                <li>Live availability ingest from RamSoft (PACS)</li>
+                <li>Auth with NPI verification</li>
+                <li>Ship to one PI law firm or chiropractor practice</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="phase phase-2">
+            <div class="phase-head">
+              Phase 2
+              <div class="phase-window">31–90 DAYS</div>
+            </div>
+            <div class="phase-body">
+              <div class="phase-goal">
+                Ranking quality + closing the referral loop.
+              </div>
+              <ul class="phase-list">
+                <li>"Send referral" via fax / SMART-on-FHIR</li>
+                <li>Personalized weights from provider history</li>
+                <li>Subspecialty matching (neuro vs MSK readers)</li>
+                <li>Insurance match via payer eligibility APIs</li>
+                <li>Provider attribution: source → choice → attendance</li>
+                <li>Center self-serve admin</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="phase phase-3">
+            <div class="phase-head">
+              Phase 3
+              <div class="phase-window">91–180 DAYS</div>
+            </div>
+            <div class="phase-body">
+              <div class="phase-goal">
+                Two-sided value. Centers see this as an acquisition channel.
+              </div>
+              <ul class="phase-list">
+                <li>Imaging center dashboard (referrals, win/loss, funnel)</li>
+                <li>Patient-side companion (extends the existing portal)</li>
+                <li>SMART-on-FHIR launch from Epic / Cerner</li>
+                <li>No Surprises Act / payer transparency estimates</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="phase phase-4">
+            <div class="phase-head">
+              Phase 4
+              <div class="phase-window">181–365 DAYS</div>
+            </div>
+            <div class="phase-body">
+              <div class="phase-goal">
+                AI-native referral intelligence at national scale.
+              </div>
+              <ul class="phase-list">
+                <li>LLM that reads referring notes → modality + subspecialty</li>
+                <li>Outcomes-based ranking from PrecisionPlus signals</li>
+                <li>Pre-auth assistance auto-drafted from notes</li>
+                <li>National multi-region tenancy</li>
+                <li>HIPAA / HITRUST / SOC 2 readiness</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="pullquote" style="margin-top: 56px">
+          Gate to ship past day 90: time-to-choice under 90 seconds, referral
+          completion ≥ 30%, and partner-network share ≥ 55%.
+          <em>If we don't measurably move those, the model isn't ready.</em>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── Metrics ─── -->
+    <section id="metrics">
+      <div class="container">
+        <div class="eyebrow">What we'd measure</div>
+        <h2>Six metrics, in priority order.</h2>
+        <p class="section-lead">
+          Engineering ships features. Product ships measurable change. These
+          are the dials we'd watch — adoption first, then quality, then the
+          dollar-line metrics that connect the directory to ER's core
+          business.
+        </p>
+
+        <div class="metrics">
+          <div class="metric-row priority">
+            <div class="metric-layer">Adoption</div>
+            <div class="metric-name">Weekly active referring providers</div>
+            <div class="metric-why">The growth ceiling for everything else</div>
+          </div>
+          <div class="metric-row">
+            <div class="metric-layer">Stickiness</div>
+            <div class="metric-name">Returning-provider rate, week 4</div>
+            <div class="metric-why">Habit formation, not novelty</div>
+          </div>
+          <div class="metric-row">
+            <div class="metric-layer">Match quality</div>
+            <div class="metric-name">Patient-attended rate per referral</div>
+            <div class="metric-why">Did the rank actually predict fit?</div>
+          </div>
+          <div class="metric-row">
+            <div class="metric-layer">Network value</div>
+            <div class="metric-name">Partner-network share of selections</div>
+            <div class="metric-why">Direct line to ER revenue</div>
+          </div>
+          <div class="metric-row">
+            <div class="metric-layer">Downstream</div>
+            <div class="metric-name">PrecisionPlus reports per 100 referrals</div>
+            <div class="metric-why">Connects directory to the core product</div>
+          </div>
+          <div class="metric-row">
+            <div class="metric-layer">Operational</div>
+            <div class="metric-name">p95 search latency, geocode accuracy</div>
+            <div class="metric-why">Is the kitchen on fire?</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── Risks ─── -->
+    <section>
+      <div class="container">
+        <div class="eyebrow">Honest about what could go wrong</div>
+        <h2>Risks & dependencies.</h2>
+        <p class="section-lead">
+          We won't pretend these don't exist. Each has an explicit
+          mitigation; nothing here is a blocker, but each needs an owner.
+        </p>
+
+        <div class="grid grid-2">
+          <div class="risk">
+            <h3>Data freshness on non-partner centers</h3>
+            <p>
+              Capacity and insurance change weekly. Stale data poisons trust.
+              <strong>Mitigation:</strong> surface "last updated"
+              prominently; combine scrape + payer feeds + center self-serve;
+              degrade gracefully.
+            </p>
+          </div>
+          <div class="risk">
+            <h3>RamSoft / PACS dependency</h3>
+            <p>
+              Live availability for partner centers depends on their
+              cooperation. <strong>Mitigation:</strong> queue + cache
+              fallback; don't block our roadmap on theirs.
+            </p>
+          </div>
+          <div class="risk">
+            <h3>HIPAA scope creep</h3>
+            <p>
+              Once patient names enter referrals, every system the data
+              touches becomes regulated. <strong>Mitigation:</strong> decide
+              compliance posture before features, not after.
+            </p>
+          </div>
+          <div class="risk">
+            <h3>Provider attribution leakage</h3>
+            <p>
+              Referrers will pick up the phone instead of clicking.
+              <strong>Mitigation:</strong> SMS-back-to-patient confirmation
+              gives a separate attendance signal even when click attribution
+              misses.
+            </p>
+          </div>
+          <div class="risk">
+            <h3>Geocoding vendor lock-in</h3>
+            <p>
+              Mapbox / Google billing scales nonlinearly.
+              <strong>Mitigation:</strong> aggressive caching; keep the
+              interface vendor-agnostic from day one.
+            </p>
+          </div>
+          <div class="risk">
+            <h3>Distribution</h3>
+            <p>
+              A directory nobody knows about is a search box.
+              <strong>Mitigation:</strong> tie launches to existing
+              PI-attorney and pain-management channels — those are ER's
+              hottest wedges today.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── Closing ─── -->
+    <section class="closing">
+      <div class="container">
+        <div class="eyebrow" style="color: rgba(255, 255, 255, 0.7)">
+          Why now
+        </div>
+        <h2>Expert Radiology already has the moat. The directory cashes it in.</h2>
+        <p class="section-lead">
+          PrecisionPlus reports, 350 facilities, 80% YoY growth — the brand
+          and the network are there. What's missing is the surface providers
+          touch <em>before</em> a referral is sent. That's what this is.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="https://imaging-center-directory.vercel.app" target="_blank" rel="noopener">
+            Open the live demo
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 12h14"></path>
+              <path d="m12 5 7 7-7 7"></path>
+            </svg>
+          </a>
+          <a class="btn btn-ghost" href="https://github.com/minixuru/imaging-center-directory/blob/main/ROADMAP.md" target="_blank" rel="noopener">
+            Read the full roadmap
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="container">
+        Imaging Center Directory · Stakeholder brief · Prepared for Expert
+        Radiology leadership
+      </div>
+    </footer>
+  </body>
+</html>
